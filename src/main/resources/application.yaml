@@ -1,6 +1,9 @@
 # example values
 
-indexing-settings:
+config:
+  userAgent: Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6
+  referrer: http://www.google.com
+  webInterfacePath: /admin
   sites:
     - url: https://www.lenta.ru
       name: Лента.ру
@@ -8,18 +11,31 @@ indexing-settings:
       name: Skillbox
     - url: https://www.playback.ru
       name: PlayBack.Ru
+    - url: https://www.lutherancathedral.ru/
+      name: Cathedral
+    - url: https://dombulgakova.ru/
+      name: Bulgakov
 
 server:
   port: 8080
 
 spring:
-  datasource:
+  security:
+    user:
+      name: user
+      password: 123
+  dataSource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/skillbox?allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: test
-    url: jdbc:mysql://localhost:3306/search_engine?useSSL=false&requireSSL=false&allowPublicKeyRetrieval=true
   jpa:
+    hibernate:
+      ddl-auto: none
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        ddl-auto: update
-        show-sql: true
+        generate_statistics: true
+        session:
+          events:
+            log:
+              LOG_QUERIES_SLOWER_THAN_MS: 100

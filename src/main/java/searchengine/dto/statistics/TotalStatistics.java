@@ -1,11 +1,23 @@
 package searchengine.dto.statistics;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Data
+@RequiredArgsConstructor
+@Getter
+@Setter
 public class TotalStatistics {
-    private int sites;
-    private int pages;
-    private int lemmas;
-    private boolean indexing;
+    long sites;
+    long pages;
+    long lemmas;
+    boolean isIndexing;
+
+    public boolean isIndexing() {
+        return isIndexing;
+    }
+
+    public void setIndexing(boolean indexing) {
+        isIndexing = indexing;
+    }
 }
